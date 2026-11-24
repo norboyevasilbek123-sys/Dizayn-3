@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Bekzod &amp; Madinabonu — Nikoh toʻyi taklifnomasi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-deep: #0E1324;
+      --bg-card: #161E38;
+      --cream: #F8F4EC;
+      --muted: #C7C2B8;
+      --gold: #E5C17B;
+      --gold-dark: #B58B3E;
+      --royal: #2A2356;
+      --border: rgba(229, 193, 123, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #1A2242 0%, var(--bg-deep) 65%);
+      color: var(--cream);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    .serif {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .gold-text {
+      background: linear-gradient(135deg, #F5DFAC 0%, #D9AE5E 50%, #F2D394 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* 1. Muhrli konvert kirish ekrani */
+    .seal-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: radial-gradient(circle at center, #1C254A 0%, #0A0E1B 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      transition: opacity 0.65s ease, visibility 0.65s ease;
+    }
+
+    .seal-screen.opened {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .seal-kicker {
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .seal-names {
+      font-size: clamp(32px, 8vw, 48px);
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 28px;
+    }
+
+    .wax-seal {
+      width: 124px;
+      height: 124px;
+      border-radius: 50%;
+      border: 2px solid rgba(229, 193, 123, 0.65);
+      background: radial-gradient(circle at 35% 30%, #3A2E6E, #1B1538 75%);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55), inset 0 0 18px rgba(229, 193, 123, 0.25);
+      color: var(--gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .wax-seal:hover {
+      transform: scale(1.05);
+      box-shadow: 0 16px 40px rgba(229, 193, 123, 0.22);
+    }
+
+    .wax-initials {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .wax-sub {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-top: 2px;
+      color: var(--cream);
+      opacity: 0.85;
+    }
+
+    .seal-hint {
+      margin-top: 22px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .page-wrap {
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 0 18px 72px;
+    }
+
+    section {
+      padding: 46px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-tag {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-heading {
+      text-align: center;
+      font-size: clamp(32px, 8vw, 44px);
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+
+    /* 2. Bosh kadr */
+    .hero-banner {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      min-height: 460px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-align: center;
+      padding: 32px 20px;
+      background: #141B34;
+    }
+
+    .hero-banner img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(45%) contrast(1.08) brightness(0.62);
+    }
+
+    .hero-overlay {
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(to top, rgba(14, 19, 36, 0.94), rgba(14, 19, 36, 0.45) 65%, transparent);
+      margin: -32px -20px -32px;
+      padding: 64px 20px 30px;
+    }
+
+    .bismillah {
+      font-size: 20px;
+      color: var(--gold);
+      margin-bottom: 8px;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-title {
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-couple {
+      font-size: clamp(38px, 9vw, 56px);
+      font-style: italic;
+      line-height: 1.1;
+      margin: 10px 0 14px;
+    }
+
+    .hero-date-line {
+      font-size: 14px;
+      letter-spacing: 0.24em;
+      color: var(--cream);
+    }
+
+    /* 3. Tabrik matni */
+    .letter-box {
+      text-align: center;
+      padding: 12px 8px;
+    }
+
+    .letter-salutation {
+      font-size: clamp(28px, 7vw, 38px);
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .letter-body {
+      font-size: 15px;
+      color: var(--cream);
+      opacity: 0.92;
+      margin-bottom: 22px;
+    }
+
+    .letter-sign {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* 4. Sana va taymer */
+    .big-date-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .side-label {
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    .big-day {
+      font-size: clamp(68px, 18vw, 96px);
+      font-weight: 600;
+      line-height: 0.95;
+    }
+
+    .week-strip {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      text-align: center;
+      margin-bottom: 18px;
+      font-size: 12px;
+    }
+
+    .week-day-name {
+      color: var(--muted);
+      font-size: 10px;
+      margin-bottom: 4px;
+    }
+
+    .week-day-num {
+      padding: 6px 0;
+      border-radius: 50%;
+      color: var(--muted);
+    }
+
+    .week-day-num.active {
+      background: linear-gradient(135deg, #E5C17B, #B58B3E);
+      color: #0E1324;
+      font-weight: 700;
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .timer-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 6px;
+      text-align: center;
+    }
+
+    .timer-val {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1.1;
+    }
+
+    .timer-unit {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .btn-gold-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px 18px;
+      border-radius: 10px;
+      border: 1px solid var(--gold);
+      background: rgba(229, 193, 123, 0.08);
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn-gold-outline:hover {
+      background: rgba(229, 193, 123, 0.18);
+    }
+
+    /* 5. Oyati karima va ramkali rasm */
+    .verse-box {
+      text-align: center;
+      padding: 10px 6px 24px;
+    }
+
+    .verse-ar {
+      font-size: 22px;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .verse-uz {
+      font-size: 20px;
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+
+    .verse-ref {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+    }
+
+    .ornate-frame {
+      border: 3px solid #C69C4E;
+      outline: 1px solid rgba(229, 193, 123, 0.4);
+      outline-offset: 6px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #141B34;
+      margin-top: 10px;
+    }
+
+    .ornate-frame img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 6. Kun tartibi (gorizontal surma) */
+    .agenda-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .agenda-card {
+      flex: 0 0 74%;
+      scroll-snap-align: start;
+      background: #F8F4EC;
+      color: #141B34;
+      border-radius: 14px;
+      padding: 20px 16px;
+      text-align: center;
+      border: 2px solid #E5C17B;
+    }
+
+    .agenda-num {
+      font-size: 12px;
+      color: #8C6726;
+      letter-spacing: 0.16em;
+    }
+
+    .agenda-time {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1A2347;
+      margin: 4px 0 8px;
+    }
+
+    .agenda-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .agenda-desc {
+      font-size: 13px;
+      font-style: italic;
+      color: #4A526D;
+    }
+
+    .swipe-hint {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* 7. Dress-kod */
+    .palette-note {
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .swatches {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .swatch-item {
+      text-align: center;
+      width: 68px;
+    }
+
+    .swatch-ribbon {
+      width: 46px;
+      height: 76px;
+      margin: 0 auto 8px;
+      border-radius: 6px 6px 0 0;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .swatch-name {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    /* 8. Manzil va xarita */
+    .venue-name {
+      text-align: center;
+      font-size: clamp(28px, 7vw, 38px);
+      font-style: italic;
+      color: var(--gold);
+      margin-top: 16px;
+    }
+
+    .venue-addr {
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .map-actions {
+      display: grid;
+      gap: 10px;
+    }
+
+    .btn-gold-solid {
+      display: block;
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 10px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #F0D292, #C59B4B);
+      color: #0E1324;
+    }
+
+    /* 9. Anketa (RSVP) */
+    .rsvp-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 18px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+      margin-top: 14px;
+    }
+
+    .field-label:first-child {
+      margin-top: 0;
+    }
+
+    .input-line {
+      width: 100%;
+      background: rgba(14, 19, 36, 0.7);
+      border: none;
+      border-bottom: 1px solid var(--border);
+      color: var(--cream);
+      padding: 10px 8px;
+      font-size: 14px;
+      border-radius: 6px 6px 0 0;
+    }
+
+    .radio-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--cream);
+      margin: 8px 0;
+      cursor: pointer;
+    }
+
+    .rsvp-status {
+      margin-top: 12px;
+      font-size: 13px;
+      text-align: center;
+      color: var(--gold);
+      min-height: 18px;
+    }
+
+    /* 10. To'yona kartasi */
+    .gift-note {
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .gold-card {
+      background: linear-gradient(135deg, #E8C57E 0%, #B88B3A 48%, #F2D699 100%);
+      color: #141A2E;
+      border-radius: 16px;
+      padding: 22px 20px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+      margin-bottom: 14px;
+    }
+
+    .gold-card-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .gold-card-num {
+      font-size: clamp(18px, 5vw, 23px);
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .gold-card-holder {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* Yakun */
+    .closing-box {
+      text-align: center;
+      padding-top: 20px;
+    }
+
+    .closing-couple {
+      font-size: 36px;
+      font-style: italic;
+      margin: 10px 0 6px;
+    }
+
+    .closing-date {
+      font-size: 13px;
+      letter-spacing: 0.24em;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <!-- Muhrli kirish ekrani -->
+  <div class="seal-screen" id="sealScreen">
+    <div class="seal-kicker">Nikoh toʻyiga taklifnoma</div>
+    <div class="seal-names serif">Bekzod &amp; Madinabonu</div>
+    <button class="wax-seal" id="openSealBtn" type="button" aria-label="Taklifnomani ochish">
+      <span class="wax-initials serif">B &amp; M</span>
+      <span class="wax-sub">Ochish</span>
+    </button>
+    <div class="seal-hint">Muhrni bosib oching</div>
+  </div>
+
+  <div class="page-wrap">
+    <!-- Bosh kadr -->
+    <section>
+      <div class="hero-banner">
+        <img src="./hero-couple.jpg" alt="Bekzod va Madinabonu" />
+        <div class="hero-overlay">
+          <div class="bismillah serif">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+          <div class="hero-title">Nikoh toʻyi taklifnomasi</div>
+          <h1 class="hero-couple serif gold-text">Bekzod &amp; Madinabonu</h1>
+          <div class="hero-date-line">21 · 08 · 2027</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Taklif matni -->
+    <section>
+      <div class="letter-box">
+        <div class="letter-salutation serif">Aziz va qadrli mehmonimiz</div>
+        <p class="letter-body">
+          Allohning rahmati va ota-onalarimizning duosi bilan ikki qalb bir oila boʻlib
+          birlashmoqda. Hayotimizdagi eng goʻzal kun — nikoh toʻyimiz tantanasida Sizni
+          ham koʻrishni chin dildan istaymiz.
+        </p>
+        <div class="letter-sign">Hurmat va ehtirom bilan, KELIN VA KUYOVNING OTA-ONALARI</div>
+      </div>
+    </section>
+
+    <!-- Sana va taymer -->
+    <section>
+      <div class="section-tag">Toʻy kuni</div>
+      <div class="section-heading">Avgust · 2027</div>
+
+      <div class="big-date-row">
+        <span class="side-label">SHANBA</span>
+        <span class="big-day serif gold-text">21</span>
+        <span class="side-label">AVGUST</span>
+      </div>
+
+      <div class="week-strip" aria-hidden="true">
+        <div><div class="week-day-name">DU</div><div class="week-day-num">16</div></div>
+        <div><div class="week-day-name">SE</div><div class="week-day-num">17</div></div>
+        <div><div class="week-day-name">CH</div><div class="week-day-num">18</div></div>
+        <div><div class="week-day-name">PA</div><div class="week-day-num">19</div></div>
+        <div><div class="week-day-name">JU</div><div class="week-day-num">20</div></div>
+        <div><div class="week-day-name">SH</div><div class="week-day-num active">21</div></div>
+        <div><div class="week-day-name">YA</div><div class="week-day-num">22</div></div>
+      </div>
+
+      <div class="section-tag" style="margin-top: 14px;">Toʻyimizgacha qoldi</div>
+      <div class="timer-grid">
+        <div class="timer-card">
+          <div class="timer-val serif" id="d-days">--</div>
+          <div class="timer-unit">KUN</div>
+        </div>
+        <div class="timer-card">
+          <div class="timer-val serif" id="d-hours">--</div>
+          <div class="timer-unit">SOAT</div>
+        </div>
+        <div class="timer-card">
+          <div class="timer-val serif" id="d-mins">--</div>
+          <div class="timer-unit">DAQIQA</div>
+        </div>
+        <div class="timer-card">
+          <div class="timer-val serif" id="d-secs">--</div>
+          <div class="timer-unit">SONIYA</div>
+        </div>
+      </div>
+
+      <button class="btn-gold-outline" id="addCalendarBtn" type="button">
+        Kalendarga saqlash
+      </button>
+    </section>
+
+    <!-- Oyat va lavha -->
+    <section>
+      <div class="verse-box">
+        <div class="verse-ar">وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</div>
+        <div class="verse-uz serif">«Oralaringizda muhabbat va mehr paydo qildi»</div>
+        <div class="verse-ref">RUM SURASI, 21-OYAT</div>
+      </div>
+      <div class="ornate-frame">
+        <img src="./venue-hall.jpg" alt="Registon Saroyi tantanalar majmuasi" />
+      </div>
+    </section>
+
+    <!-- Kun tartibi -->
+    <section>
+      <div class="section-tag">Dastur</div>
+      <div class="section-heading">Kun tartibi</div>
+      <div class="agenda-scroll">
+        <div class="agenda-card">
+          <div class="agenda-num">01</div>
+          <div class="agenda-time serif">18:00</div>
+          <div class="agenda-title">Mehmonlarni kutib olish</div>
+          <div class="agenda-desc">Jonli musiqa va samimiy suhbatlar</div>
+        </div>
+        <div class="agenda-card">
+          <div class="agenda-num">02</div>
+          <div class="agenda-time serif">19:00</div>
+          <div class="agenda-title">Kelin-kuyov kirib kelishi</div>
+          <div class="agenda-desc">Tantanali marosim va qutlovlar</div>
+        </div>
+        <div class="agenda-card">
+          <div class="agenda-num">03</div>
+          <div class="agenda-time serif">20:00</div>
+          <div class="agenda-title">Tantanali bazm</div>
+          <div class="agenda-desc">Bayram dasturxoni va goʻzal lahzalar</div>
+        </div>
+      </div>
+      <div class="swipe-hint">← Suring →</div>
+    </section>
+
+    <!-- Dress-kod -->
+    <section>
+      <div class="section-tag">Dress-kod</div>
+      <div class="section-heading">Libos ranglari</div>
+      <p class="palette-note">
+        Kechamiz ranglaridagi liboslaringiz bayramimizga alohida nafosat bagʻishlaydi.
+      </p>
+      <div class="swatches">
+        <div class="swatch-item">
+          <div class="swatch-ribbon" style="background: #F8F4EC;"></div>
+          <div class="swatch-name">Marvarid</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-ribbon" style="background: #E5C17B;"></div>
+          <div class="swatch-name">Shampan</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-ribbon" style="background: #8FA3BF;"></div>
+          <div class="swatch-name">Osmon koʻk</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-ribbon" style="background: #2A2356;"></div>
+          <div class="swatch-name">Qirollik koʻk</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-ribbon" style="background: #131B36;"></div>
+          <div class="swatch-name">Tungi koʻk</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manzil -->
+    <section>
+      <div class="section-tag">Manzil</div>
+      <div class="section-heading">Toʻyxona</div>
+      <div class="ornate-frame">
+        <img src="./venue-hall.jpg" alt="Registon Saroyi manzili" />
+      </div>
+      <div class="venue-name serif">«Registon Saroyi»</div>
+      <div class="venue-addr">Samarqand shahri, Amir Temur koʻchasi, 48-uy</div>
+      <div class="map-actions">
+        <a class="btn-gold-solid" href="https://yandex.ru/maps/?text=Samarqand%20Amir%20Temur%20ko%27chasi%2048" target="_blank" rel="noopener">
+          Yandex Xaritalar
+        </a>
+        <a class="btn-gold-outline" href="https://www.google.com/maps/search/?api=1&query=Samarqand+Amir+Temur+ko%27chasi+48" target="_blank" rel="noopener">
+          Google Xaritalar
+        </a>
+        <a class="btn-gold-outline" href="https://yandex.ru/maps/?text=Samarqand%20Amir%20Temur%20ko%27chasi%2048" target="_blank" rel="noopener">
+          Taksi chaqirish
+        </a>
+      </div>
+    </section>
+
+    <!-- Anketa -->
+    <section>
+      <div class="section-tag">Anketa</div>
+      <div class="section-heading">Tashrifingizni tasdiqlang</div>
+      <p class="palette-note">
+        Iltimos, kelishingizni 14-avgustgacha tasdiqlang. Javobingiz toʻgʻridan-toʻgʻri
+        kelin-kuyovga yetib boradi.
+      </p>
+      <form class="rsvp-card" id="rsvpForm">
+        <label class="field-label" for="guestName">Ism va familiyangiz</label>
+        <input class="input-line" id="guestName" type="text" placeholder="Masalan: Azizbek Karimov" required />
+
+        <div class="field-label">Ishtirokingiz</div>
+        <label class="radio-row">
+          <input type="radio" name="attendance" value="Albatta kelaman (kelamiz)" checked />
+          <span>Albatta kelaman (kelamiz)</span>
+        </label>
+        <label class="radio-row">
+          <input type="radio" name="attendance" value="Afsuski, kela olmayman" />
+          <span>Afsuski, kela olmayman</span>
+        </label>
+
+        <label class="field-label" for="guestWish">Tilaklaringiz (ixtiyoriy)</label>
+        <input class="input-line" id="guestWish" type="text" placeholder="Baxt va farovonlik tilaymiz..." />
+
+        <button class="btn-gold-solid" type="submit" style="margin-top: 18px;">
+          Javobni yuborish
+        </button>
+        <div class="rsvp-status" id="rsvpStatus"></div>
+      </form>
+    </section>
+
+    <!-- To'yona kartasi -->
+    <section>
+      <div class="section-tag">Toʻyona</div>
+      <div class="section-heading">Eng qimmatli sovgʻa</div>
+      <p class="gift-note">
+        Siz uchun eng qimmatli sovgʻa — tashrifingiz va samimiy duolaringiz.
+        Toʻyona yoʻllashni istasangiz:
+      </p>
+      <div class="gold-card">
+        <div class="gold-card-top">
+          <span>TOʻYONA</span>
+          <span>B &amp; M</span>
+        </div>
+        <div class="gold-card-num" id="cardNumberText">8600 0000 0000 0000</div>
+        <div class="gold-card-holder">BEKZOD R.</div>
+      </div>
+      <button class="btn-gold-outline" id="copyCardBtn" type="button">
+        Raqamdan nusxa olish
+      </button>
+    </section>
+
+    <!-- Yakun -->
+    <section class="closing-box">
+      <div class="section-heading" style="margin-bottom: 6px;">Sizni intizorlik bilan kutamiz</div>
+      <div class="closing-couple serif gold-text">Bekzod &amp; Madinabonu</div>
+      <div class="closing-date">21 · 08 · 2027 · SAMARQAND</div>
+    </section>
+  </div>
+
+  <script>
+    // Muhrni ochish
+    const sealScreen = document.getElementById("sealScreen");
+    document.getElementById("openSealBtn").addEventListener("click", () => {
+      sealScreen.classList.add("opened");
+    });
+
+    // Ortga sanash taymeri: 2027-yil 21-avgust, soat 18:00 (+05:00)
+    const eventTime = new Date("2027-08-21T18:00:00+05:00").getTime();
+
+    function tickTimer() {
+      const now = Date.now();
+      const diff = Math.max(0, eventTime - now);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("d-days").textContent = String(days).padStart(2, "0");
+      document.getElementById("d-hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("d-mins").textContent = String(mins).padStart(2, "0");
+      document.getElementById("d-secs").textContent = String(secs).padStart(2, "0");
+    }
+
+    tickTimer();
+    setInterval(tickTimer, 1000);
+
+    // Kalendarga qo'shish (.ics fayl)
+    document.getElementById("addCalendarBtn").addEventListener("click", () => {
+      const ics = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "BEGIN:VEVENT",
+        "DTSTART:20270821T130000Z",
+        "DTEND:20270821T180000Z",
+        "SUMMARY:Bekzod va Madinabonu — Nikoh toʻyi",
+        "LOCATION:Registon Saroyi, Samarqand shahri",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+      const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "bekzod-madinabonu-toy.ics";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Karta raqamini nusxalash
+    document.getElementById("copyCardBtn").addEventListener("click", async () => {
+      const raw = document.getElementById("cardNumberText").textContent.replace(/\s+/g, "");
+      try {
+        await navigator.clipboard.writeText(raw);
+        document.getElementById("copyCardBtn").textContent = "Nusxa olindi!";
+      } catch {
+        document.getElementById("copyCardBtn").textContent = raw;
+      }
+    });
+
+    // Anketa yuborish
+    document.getElementById("rsvpForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("guestName").value.trim();
+      const status = document.querySelector('input[name="attendance"]:checked').value;
+      document.getElementById("rsvpStatus").textContent =
+        `${name} — javobingiz qabul qilindi (${status}).`;
+    });
+  </script>
+</body>
+</html>
